@@ -1,3 +1,7 @@
+---
+import '../styles/global.css';
+import 'aos/dist/aos.css'; 
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -9,6 +13,14 @@
 	</head>
 	<body>
 		<slot />
+		<!-- Inicialización de AOS parte Agregada-->
+    <script type="module">
+      import AOS from 'aos';
+      AOS.init({
+        duration: 1000, // duración de la animación
+        once: true      // anima solo una vez
+      });
+    </script>
 	</body>
 </html>
 
