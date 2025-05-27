@@ -288,16 +288,7 @@ import "../styles/global.css";
       </div>
     </section>
 
-    <!-- Contacto -->
-    <section id="contacto" class="py-16 px-6 text-center bg-gray-50">
-      <h2 class="text-3xl font-bold mb-4">Contacto</h2>
-      <p>
-        Escríbenos a <a
-          href="mailto:contacto@cd.com"
-          class="text-blue-600 underline">contacto@cd.com</a
-        > o llámanos al 123-456-7890.
-      </p>
-    </section>
+  
 
     <!-- Botón flotante de WhatsApp -->
     <a
@@ -313,34 +304,42 @@ import "../styles/global.css";
       />
     </a>
 
-
-    <footer class="bg-black text-white py-6 px-6">
-  <div class="max-w-7xl mx-auto flex flex-col items-start gap-4">
+  
+  <!--footer-->
+<footer class="bg-black text-white py-6 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-6">
     
-    <!-- Título de redes sociales -->
-    <h3 class="text-xl font-semibold">Redes Sociales</h3>
-
-    <!-- Iconos de redes sociales -->
-    <div class="flex gap-4">
-      <!-- Facebook -->
-      <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook">
-        <img src="/images/facebook.png" alt="Facebook" class="w-10 h-10 hover:opacity-70 transition duration-300">
-      </a>
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
-        <img src="/images/instagram.png" alt="Instagram" class="w-10 h-10 hover:opacity-70 transition duration-300">
-      </a>
-      <!-- WhatsApp -->
-      <a href="https://www.tiktok.com" target="_blank" aria-label="Tiktok">
-        <img src="/images/tik-tok3.png" alt="WhatsApp" class="w-10 h-10 hover:opacity-70 transition duration-300">
-      </a>
+    <!-- Redes Sociales -->
+    <div>
+      <h3 class="text-xl font-semibold">Redes Sociales</h3>
+      <div class="flex gap-4 mt-2">
+        <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook">
+          <img src="/images/facebook.png" alt="Facebook" class="w-10 h-10 hover:opacity-70 transition duration-300">
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+          <img src="/images/instagram.png" alt="Instagram" class="w-10 h-10 hover:opacity-70 transition duration-300">
+        </a>
+        <a href="https://www.tiktok.com" target="_blank" aria-label="TikTok">
+          <img src="/images/tik-tok3.png" alt="TikTok" class="w-10 h-10 hover:opacity-70 transition duration-300">
+        </a>
+      </div>
     </div>
 
-    <!-- Texto de derechos reservados -->
-    <p class="text-sm mt-2 text-center w-full">&copy; 2025 Calzado Deportivo. Todos los derechos reservados.</p>
+    <!-- Información de Contacto -->
+    <div class="text-right">
+      <h3 class="text-xl font-semibold">Contacto</h3>
+      <p class="mt-2 flex justify-end items-center gap-2">
+        <img src="/images/mail1.png" alt="Correo" class="w-10 h-10">
+        acirema12@hotmail.com
+      </p>
+    </div>
 
   </div>
+
+  <!-- Derechos reservados -->
+  <p class="text-sm mt-6 text-center w-full">&copy; 2025 Calzado Deportivo. Todos los derechos reservados.</p>
 </footer>
+
 
   </body>
 </html>
