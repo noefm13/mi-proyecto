@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+
 ---
 
 <html lang="es">
@@ -13,40 +14,99 @@ import "../styles/global.css";
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap"
       rel="stylesheet"
     />
+    
+    <!--Inicializa los scripts de interacción: menú, carrusel y cambio automático de imágenes-->
+    <script is:inline>
+      initMenuToggle();
+      initHeroCarousel();
+      initImageSwap();
+    </script>
   </head>
+
   <body class="bg-white text-gray-800 font-sans">
     <!-- Header/Menu -->
-    <header
-      class="bg-black text-white flex justify-between items-center px-6 py-4 border-b border-white"
-    >
-      <div
-        class="text-xl font-bold tracking-wider"
-        style="font-family: 'Raleway', sans-serif; color: white"
-      >
-        Price Shoes Tizayuca
-      </div>
+    <!-- Header .astro (ejemplo completo) -->
 
-      <nav class="space-x-6">
-        <a href="#inicio" class="hover:text-pink-400 transition-colors"
-          >Inicio</a
+    <header
+      class="fixed top-0 left-0 w-full bg-black text-white px-6 py-4 border-b border-white z-50"
+    >
+      <div class="flex justify-between items-center max-w-7xl mx-auto">
+        <div
+          class="text-xl font-bold tracking-wider"
+          style="font-family: 'Raleway', sans-serif;"
         >
-        <a href="#quienes-somos" class="hover:text-pink-400 transition-colors"
-          >¿Quiénes Somos?</a
+          Price Shoes Tizayuca
+        </div>
+
+        <!-- Botón hamburguesa -->
+        <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+
+        <!-- Menú de navegación -->
+        <nav
+          id="menu"
+          class="hidden md:flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 absolute md:static top-full left-0 w-full md:w-auto bg-black md:bg-transparent text-center md:text-left py-4 md:py-0"
         >
-        <a href="#servicios" class="hover:text-pink-400 transition-colors"
-          >Servicios</a
-        >
-        <a href="#galeria" class="hover:text-pink-400 transition-colors"
-          >Galería</a
-        >
-        <a href="#ubicacion" class="hover:text-pink-400 transition-colors"
-          >Ubicación</a
-        >
-        <a href="#contacto" class="hover:text-pink-400 transition-colors"
-          >Contacto</a
-        >
-      </nav>
+          <a
+            href="#inicio"
+            class="block px-4 py-2 hover:text-pink-400 transition-colors text-center md:text-left"
+            >Inicio</a
+          >
+          <a
+            href="#quienes-somos"
+            class="block px-4 py-2 hover:text-pink-400 transition-colors text-center md:text-left"
+            >¿Quiénes Somos?</a
+          >
+          <a
+            href="#servicios"
+            class="block px-4 py-2 hover:text-pink-400 transition-colors text-center md:text-left"
+            >Servicios</a
+          >
+          <a
+            href="#galeria"
+            class="block px-4 py-2 hover:text-pink-400 transition-colors text-center md:text-left"
+            >Galería</a
+          >
+          <a
+            href="#ubicacion"
+            class="block px-4 py-2 hover:text-pink-400 transition-colors text-center md:text-left"
+            >Ubicación</a
+          >
+          <a
+            href="#contacto"
+            class="block px-4 py-2 hover:text-pink-400 transition-colors text-center md:text-left"
+            >Contacto</a
+          >
+        </nav>
+      </div>
     </header>
+
+    <div class="pt-14"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuBtn = document.getElementById("menu-btn");
+        const menu = document.getElementById("menu");
+
+        if (menuBtn && menu) {
+          menuBtn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+          });
+        }
+      });
+    </script>
 
     <!-- Carrusel de imágenes -->
     <!-- Sección de inicio -->
@@ -92,7 +152,7 @@ import "../styles/global.css";
           class="absolute inset-0 flex justify-center items-start text-center z-20 pt-96"
         >
           <a
-            href="#servicios"
+            href="#quienes-somos"
             class="bg-white text-black px-6 py-3 rounded shadow-md font-bold transition hover:bg-[#0033A0] hover:text-white"
           >
             ¡CONÓCENOS!
@@ -100,14 +160,31 @@ import "../styles/global.css";
         </div>
 
         <!-- Indicadores -->
-        <div id="carousel-indicators" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 flex space-x-3">
-         <span data-index="0" class="w-3 h-3 rounded-full bg-white opacity-100 transition duration-300 cursor-pointer"></span>
-         <span data-index="1" class="w-3 h-3 rounded-full bg-white opacity-50 transition duration-300 cursor-pointer"></span>
-         <span data-index="2" class="w-3 h-3 rounded-full bg-white opacity-50 transition duration-300 cursor-pointer"></span>
-         <span data-index="3" class="w-3 h-3 rounded-full bg-white opacity-50 transition duration-300 cursor-pointer"></span>
-         <span data-index="4" class="w-3 h-3 rounded-full bg-white opacity-50 transition duration-300 cursor-pointer"></span>
+        <div
+          id="carousel-indicators"
+          class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 flex space-x-3"
+        >
+          <span
+            data-index="0"
+            class="w-3 h-3 rounded-full bg-white opacity-100 transition duration-300 cursor-pointer"
+          ></span>
+          <span
+            data-index="1"
+            class="w-3 h-3 rounded-full bg-white opacity-50 transition duration-300 cursor-pointer"
+          ></span>
+          <span
+            data-index="2"
+            class="w-3 h-3 rounded-full bg-white opacity-50 transition duration-300 cursor-pointer"
+          ></span>
+          <span
+            data-index="3"
+            class="w-3 h-3 rounded-full bg-white opacity-50 transition duration-300 cursor-pointer"
+          ></span>
+          <span
+            data-index="4"
+            class="w-3 h-3 rounded-full bg-white opacity-50 transition duration-300 cursor-pointer"
+          ></span>
         </div>
-
 
         <!-- Flechas -->
         <button
@@ -126,396 +203,726 @@ import "../styles/global.css";
     </section>
 
     <script is:inline>
-  const slider = document.getElementById("hero-slider");
-  const slides = slider.children;
-  const indicators = document.querySelectorAll("#carousel-indicators span");
-  const totalSlides = slides.length;
-  let currentIndex = 0;
-  let autoSlideInterval;
+      const slider = document.getElementById("hero-slider");
+      const slides = slider.children;
+      const indicators = document.querySelectorAll("#carousel-indicators span");
+      const totalSlides = slides.length;
+      let currentIndex = 0;
+      let autoSlideInterval;
 
-  function showSlide(index) {
-    const slideWidth = slider.clientWidth;
-    slider.style.transform = `translateX(-${index * slideWidth}px)`;
-    indicators.forEach((dot, i) => {
-      dot.classList.toggle("opacity-100", i === index);
-      dot.classList.toggle("opacity-50", i !== index);
-    });
-    currentIndex = index;
-  }
+      function showSlide(index) {
+        const slideWidth = slider.clientWidth;
+        slider.style.transform = `translateX(-${index * slideWidth}px)`;
+        indicators.forEach((dot, i) => {
+          dot.classList.toggle("opacity-100", i === index);
+          dot.classList.toggle("opacity-50", i !== index);
+        });
+        currentIndex = index;
+      }
 
-  function nextSlide() {
-    showSlide((currentIndex + 1) % totalSlides);
-  }
+      function nextSlide() {
+        showSlide((currentIndex + 1) % totalSlides);
+      }
 
-  function prevSlide() {
-    showSlide((currentIndex - 1 + totalSlides) % totalSlides);
-  }
+      function prevSlide() {
+        showSlide((currentIndex - 1 + totalSlides) % totalSlides);
+      }
 
-  // Eventos de flechas
-  document.getElementById("heroNext").addEventListener("click", nextSlide);
-  document.getElementById("heroPrev").addEventListener("click", prevSlide);
+      // Eventos de flechas
+      document.getElementById("heroNext").addEventListener("click", nextSlide);
+      document.getElementById("heroPrev").addEventListener("click", prevSlide);
 
-  // Click en indicadores
-  indicators.forEach(dot => {
-    dot.addEventListener("click", () => {
-      const index = parseInt(dot.getAttribute("data-index"));
-      showSlide(index);
-      resetAutoSlide();
-    });
-  });
+      // Click en indicadores
+      indicators.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const index = parseInt(dot.getAttribute("data-index"));
+          showSlide(index);
+          resetAutoSlide();
+        });
+      });
 
-  // Auto avance
-  function startAutoSlide() {
-    autoSlideInterval = setInterval(nextSlide, 5000);
-  }
+      // Auto avance
+      function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 5000);
+      }
 
-  function resetAutoSlide() {
-    clearInterval(autoSlideInterval);
-    startAutoSlide();
-  }
+      function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+      }
 
-  // Iniciar
-  showSlide(currentIndex);
-  startAutoSlide();
-</script>
-<!-- Servicios -->
-<section id="servicios" class="py-24 px-6 bg-white text-center">
-  <p class="text-indigo-600 font-semibold mb-2">Lo que ofrecemos</p>
-  <h2 class="text-4xl font-extrabold text-gray-800 mb-6 ">Nuestros Servicios</h2>
-  <p class="text-gray-500 text-lg mb-12 max-w-2xl mx-auto">
-    CONOCE LO QUE PRICE SHOES TIZAYUCA TIENE PARA OFRECERTE.
-  </p>
-
-  <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-    <!-- Servicio 1 -->
-    <div class="bg-white shadow-xl rounded-2xl p-8 transition transform hover:scale-105 duration-300 border-2 border-indigo-400">
-      <div class="w-24 h-24 mx-auto mb-4 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
-        <img src="public/images/afiliacion.png" alt="Afiliación" class="w-16 h-16 object-contain" />
-      </div>
-      <h3 class="text-xl font-extrabold text-gray-800 mb-2">Afiliación</h3>
-      <p class="text-gray-600">Afíliate fácilmente y accede a beneficios exclusivos como precios especiales.</p>
-    </div>
-
-    <!-- Servicio 2 -->
-    <div class="bg-white shadow-xl rounded-2xl p-8 transition transform hover:scale-105 duration-300 border-2 border-indigo-400">
-      <div class="w-24 h-24 mx-auto mb-4 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
-        <img src="public/images/pedido.png" alt="Pedidos" class="w-16 h-16 object-contain" />
-      </div>
-      <h3 class="text-xl font-extrabold text-gray-800 mb-2">Pedidos por Encargo</h3>
-      <p class="text-gray-600">Solicita productos específicos según tu necesidad.</p>
-    </div>
-
-    <!-- Servicio 3 -->
-    <div class="bg-white shadow-xl rounded-2xl p-8 transition transform hover:scale-105 duration-300 border-2 border-indigo-400">
-      <div class="w-24 h-24 mx-auto mb-4 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
-        <img src="public/images/calidad.png" alt="Asistencia" class="w-16 h-16 object-contain" />
-      </div>
-      <h3 class="text-xl font-extrabold text-gray-800 mb-2">Asistencia Personalizada</h3>
-      <p class="text-gray-600">Te acompañamos en cada paso. Estamos listos para ayudarte.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Barra de logos fuera del section para que ocupe TODA la pantalla -->
-<div class="w-full overflow-hidden bg-gradient-to-r from-purple-200 via-white to-indigo-100 py-6">
-  <div class="relative w-[200%] flex animate-marquee hover:pause-animation">
-    <!-- Track 1 -->
-    <div class="flex items-center justify-around gap-16 w-full">
-      <img src="public/images/andrea.png" alt="Andrea" class="h-20 w-32 object-contain" />
-      <img src="public/images/priceshoes.png" alt="Price Shoes" class="h-20 w-32 object-contain" />
-      <img src="public/images/cklass.png" alt="Cklass" class="h-20 w-32 object-contain" />
-      <img src="public/images/priceshoes.png" alt="Price Shoes" class="h-20 w-32 object-contain" />
-    </div>
-    <!-- Track 2 -->
-    <div class="flex items-center justify-around gap-16 w-full">
-      <img src="public/images/andrea.png" alt="Andrea" class="h-20 w-32 object-contain" />
-      <img src="public/images/priceshoes.png" alt="Price Shoes" class="h-20 w-32 object-contain" />
-      <img src="public/images/cklass.png" alt="Cklass" class="h-20 w-32 object-contain" />
-      <img src="public/images/priceshoes.png" alt="Price Shoes" class="h-20 w-32 object-contain" />
-    </div>
-  </div>
-</div>
-
-<!-- Estilos de animación -->
-<style>
-  @keyframes marquee {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .animate-marquee {
-    animation: marquee 20s linear infinite;
-  }
-
-  .hover\:pause-animation:hover {
-    animation-play-state: paused;
-  }
-</style>
-
-<!-- Galería de Productos -->
-<section id="galeria" class="py-20 px-6 bg-gradient-to-br from-white to-gray-100">
-  <div class="max-w-7xl mx-auto text-center">
-    <h3 class="text-lg text-gray-500 uppercase tracking-wide">Algunos de Nuestros Productos</h3>
-    <h2 class="text-4xl font-extrabold text-gray-800 mt-2 mb-12 border-b-4 border-purple-500 inline-block pb-2">
-      Galería
-    </h2>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-
-      <!-- Tarjeta 1 -->
-      <div class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300">
-        <div class="relative aspect-square bg-white flex items-center justify-center overflow-hidden">
-          <img src="/public/images/casuales.png" alt="Zapatos Casuales Uno" class="auto-swap-img show" />
-          <img src="/public/images/casuales2.png" alt="Zapatos Casuales Dos" class="auto-swap-img" />
-          <img src="/public/images/casuales3.png" alt="Zapatos Casuales Tres" class="auto-swap-img" />
-          <img src="/public/images/casuales4.png" alt="Zapatos Casuales Cuatro" class="auto-swap-img" />
-        </div>
-        <div class="bg-purple-100 text-purple-800 py-4 text-lg font-extrabold text-center tracking-wide">
-          Zapatos Casuales
-        </div>
-      </div>
-
-      <!-- Tarjeta 2 -->
-      <div class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300">
-        <div class="relative aspect-square bg-white flex items-center justify-center overflow-hidden">
-          <img src="/public/images/mochila.png" alt="Bolsos Uno" class="auto-swap-img show" />
-          <img src="/public/images/mochila2.png" alt="Bolsos Dos" class="auto-swap-img" />
-          <img src="/public/images/mochila3.png" alt="Bolsos Tres" class="auto-swap-img" />
-          <img src="/public/images/mochila4.png" alt="Bolsos Cuatro" class="auto-swap-img" />
-        </div>
-        <div class="bg-blue-100 text-blue-800 py-4 text-lg font-extrabold text-center tracking-wide">
-          Bolsos y Accesorios
-        </div>
-      </div>
-
-      <!-- Tarjeta 3 -->
-      <div class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300">
-        <div class="relative aspect-square bg-white flex items-center justify-center overflow-hidden">
-          <img src="/public/images/tacones.png" alt="Tacones Uno" class="auto-swap-img show" />
-          <img src="/public/images/tacones2.png" alt="Tacones Dos" class="auto-swap-img" />
-          <img src="/public/images/tacones3.png" alt="Tacones Tres" class="auto-swap-img" />
-          <img src="/public/images/tacones4.png" alt="Tacones Cuatro" class="auto-swap-img" />
-        </div>
-        <div class="bg-purple-100 text-purple-800 py-4 text-lg font-extrabold text-center tracking-wide">
-          Tacones Elegantes
-        </div>
-      </div>
-
-      <!-- Tarjeta 4 -->
-      <div class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300">
-        <div class="relative aspect-square bg-white flex items-center justify-center overflow-hidden">
-          <img src="/public/images/escolar.png" alt="Calzado Escolar Uno" class="auto-swap-img show" />
-          <img src="/public/images/escolar2.png" alt="Calzado Escolar Dos" class="auto-swap-img" />
-          <img src="/public/images/escolar3.png" alt="Calzado Escolar Tres" class="auto-swap-img" />
-          <img src="/public/images/escolar4.png" alt="Calzado Escolar Cuatro" class="auto-swap-img" />
-        </div>
-        <div class="bg-blue-100 text-blue-800 py-4 text-lg font-extrabold text-center tracking-wide">
-          Calzado Escolar
-        </div>
-      </div>
-
-      <!-- Tarjeta 5 -->
-      <div class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300">
-        <div class="relative aspect-square bg-white flex items-center justify-center overflow-hidden">
-          <img src="/public/images/deportivo.png" alt="Deportivos Uno" class="auto-swap-img show" />
-          <img src="/public/images/deportivo2.png" alt="Deportivos Dos" class="auto-swap-img" />
-          <img src="/public/images/deportivo3.png" alt="Deportivos Tres" class="auto-swap-img" />
-          <img src="/public/images/deportivo4.png" alt="Deportivos Cuatro" class="auto-swap-img" />
-        </div>
-        <div class="bg-purple-100 text-purple-800 py-4 text-lg font-extrabold text-center tracking-wide">
-          Deportivos y Tenis
-        </div>
-      </div>
-
-      <!-- Tarjeta 6 -->
-      <div class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300">
-        <div class="relative aspect-square bg-white flex items-center justify-center overflow-hidden">
-          <img src="/public/images/ropa.png" alt="Ropa para Todos Uno" class="auto-swap-img show" />
-          <img src="/public/images/ropa2.png" alt="Ropa para Todos Dos" class="auto-swap-img" />
-          <img src="/public/images/ropa3.png" alt="Ropa para Todos Tres" class="auto-swap-img" />
-          <img src="/public/images/ropa4.png" alt="Ropa para Todos Cuatro" class="auto-swap-img" />
-        </div>
-        <div class="bg-blue-100 text-blue-800 py-4 text-lg font-extrabold text-center tracking-wide">
-          Ropa para Todos
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-<!-- Estilos para las imágenes animadas -->
-<style>
-  .auto-swap-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-  }
-
-  .auto-swap-img.show {
-    opacity: 1;
-  }
-</style>
-
-<!-- Script para hacer el cambio automático -->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const cardContainers = document.querySelectorAll(".aspect-square");
-
-    cardContainers.forEach((container) => {
-      const images = container.querySelectorAll(".auto-swap-img");
-      let current = 0;
-
-      if (images.length < 2) return;
-
-      setInterval(() => {
-        images[current].classList.remove("show");
-        current = (current + 1) % images.length;
-        images[current].classList.add("show");
-      }, 3000); // Cambia cada 3 segundos
-    });
-  });
-</script>
-
-
-    <!-- Quiénes Somos -->
-<section id="quienes-somos" class="py-24 bg-gradient-to-br from-blue-100 via-white to-blue-100">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-
-    <!-- Columna de texto -->
-    <div data-aos="fade-right" class="space-y-6">
-      <h2 class="text-4xl font-extrabold text-gray-800">
-        ¿Quiénes somos?
+      // Iniciar
+      showSlide(currentIndex);
+      startAutoSlide();
+    </script>
+    <!-- Servicios -->
+    <section id="servicios" class="py-24 px-6 bg-white text-center">
+      <p class="text-indigo-600 font-semibold mb-2">Lo que ofrecemos</p>
+      <h2 class="text-4xl font-extrabold text-gray-800 mb-6">
+        Nuestros Servicios
       </h2>
-      <div class="w-20 h-1 bg-indigo-500 rounded"></div>
-      <p class="text-lg text-gray-700 leading-relaxed">
-        Somos una <span class="font-semibold text-indigo-600">distribuidora comprometida</span> con acercar moda, calzado y estilo a cada rincón de Tizayuca y sus alrededores.
-        <br /><br />
-        Nuestra pasión es conectar a las personas con productos de calidad a precios accesibles. Nos guiamos por la <span class="text-indigo-600 font-medium">responsabilidad, el respeto y la honestidad</span>. 
-        <br /><br />
-        Trabajamos cada día para brindar una atención cercana, confiable y profesional a nuestros clientes y socios.
+      <p class="text-gray-500 text-lg mb-12 max-w-2xl mx-auto">
+        CONOCE LO QUE PRICE SHOES TIZAYUCA TIENE PARA OFRECERTE.
       </p>
-    </div>
 
-    <!-- Columna visual -->
-<div class="space-y-6" data-aos="fade-left">
-  <!-- Video principal (más grande y proporcional) -->
-  <div class="aspect-video rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-500 transform hover:scale-105">
-    <video class="w-full h-full object-cover object-top" autoplay muted loop playsinline>
-      <source src="/public/videos/pstizayuca.mp4" type="video/mp4" />
-      Tu navegador no soporta video HTML5.
-    </video>
-  </div>
-
-  <!-- Texto alternativo para video -->
-  <div class="text-2xl text-gray-500 text-center italic font-semibold">
-    "Estilo, calidad y tendencia te esperan."
-  </div>
-</div>
-</section>
-
-    <!-- Ubicación -->
-    <section id="ubicacion" class="py-16 px-6 text-center bg-white">
-      <h2 class="text-3xl font-extrabold mb-4 border-b-4 border-purple-500 inline-block pb-2">
-        Ubicación
-      </h2>
-      <p class="mb-4">
-        Visítanos en nuestra tienda física en Av. Juárez Nte.7 centro, Tizayuca,
-        Hgo.
-      </p>
-      <div class="w-full">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.9601240651327!2d-98.97817750000002!3d19.8416401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d191983c8aed15%3A0xaa3d196669d6057e!2sPrice%20Shoes%20Tizayuca!5e0!3m2!1ses!2smx!4v1747944810025!5m2!1ses!2smx"
-          class="w-full h-[450px] border-0"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Ubicación en Google Maps"
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Servicio 1 -->
+        <div
+          class="bg-white shadow-xl rounded-2xl p-8 transition transform hover:scale-105 duration-300 border-2 border-indigo-400"
         >
-        </iframe>
-      </div>
-    </section>
-
-    <!-- Botón flotante de WhatsApp -->
-    <a
-      href="https://wa.me/5211234567890?text=Hola,%20quiero%20más%20información%20sobre%20el%20calzado%20deportivo"
-      class="fixed bottom-6 right-6 z-50"
-      target="_blank"
-      aria-label="Chat en WhatsApp"
-    >
-      <img
-        src="/images/telegram.png"
-        alt="WhatsApp"
-        class="w-14 h-14 hover:scale-110 transition-transform duration-300"
-      />
-    </a>
-
-    <!--footer-->
-    <footer class="bg-black text-white py-6 px-6">
-      <div
-        class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-6"
-      >
-        <!-- Redes Sociales -->
-        <div>
-          <h3 class="text-xl font-semibold">Redes Sociales</h3>
-          <div class="flex gap-4 mt-2">
-            <a
-              href="https://www.facebook.com/"
-              target="_blank"
-              aria-label="Facebook"
-            >
-              <img
-                src="/images/facebook.png"
-                alt="Facebook"
-                class="w-10 h-10 hover:opacity-70 transition duration-300"
-              />
-            </a>
-            <a
-              href="https://www.instagram.com/"
-              target="_blank"
-              aria-label="Instagram"
-            >
-              <img
-                src="/images/instagram.png"
-                alt="Instagram"
-                class="w-10 h-10 hover:opacity-70 transition duration-300"
-              />
-            </a>
-            <a
-              href="https://www.tiktok.com"
-              target="_blank"
-              aria-label="TikTok"
-            >
-              <img
-                src="/images/tik-tok3.png"
-                alt="TikTok"
-                class="w-10 h-10 hover:opacity-70 transition duration-300"
-              />
-            </a>
+          <div
+            class="w-24 h-24 mx-auto mb-4 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center"
+          >
+            <img
+              src="public/images/afiliacion.png"
+              alt="Afiliación"
+              class="w-16 h-16 object-contain"
+            />
           </div>
+          <h3 class="text-xl font-extrabold text-gray-800 mb-2">Afiliación</h3>
+          <p class="text-gray-600">
+            Afíliate fácilmente y accede a beneficios exclusivos como precios
+            especiales.
+          </p>
         </div>
 
-        <!-- Información de Contacto -->
-        <div class="text-right">
-          <h3 class="text-xl font-semibold">Contacto</h3>
-          <p class="mt-2 flex justify-end items-center gap-2">
-            <img src="/images/mail1.png" alt="Correo" class="w-10 h-10" />
-            acirema12@hotmail.com
+        <!-- Servicio 2 -->
+        <div
+          class="bg-white shadow-xl rounded-2xl p-8 transition transform hover:scale-105 duration-300 border-2 border-indigo-400"
+        >
+          <div
+            class="w-24 h-24 mx-auto mb-4 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center"
+          >
+            <img
+              src="public/images/pedido.png"
+              alt="Pedidos"
+              class="w-16 h-16 object-contain"
+            />
+          </div>
+          <h3 class="text-xl font-extrabold text-gray-800 mb-2">
+            Pedidos por Encargo
+          </h3>
+          <p class="text-gray-600">
+            Solicita productos específicos según tu necesidad.
+          </p>
+        </div>
+
+        <!-- Servicio 3 -->
+        <div
+          class="bg-white shadow-xl rounded-2xl p-8 transition transform hover:scale-105 duration-300 border-2 border-indigo-400"
+        >
+          <div
+            class="w-24 h-24 mx-auto mb-4 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center"
+          >
+            <img
+              src="public/images/calidad.png"
+              alt="Asistencia"
+              class="w-16 h-16 object-contain"
+            />
+          </div>
+          <h3 class="text-xl font-extrabold text-gray-800 mb-2">
+            Asistencia Personalizada
+          </h3>
+          <p class="text-gray-600">
+            Te acompañamos en cada paso. Estamos listos para ayudarte.
           </p>
         </div>
       </div>
+    </section>
 
-      <!-- Derechos reservados -->
-      <p class="text-sm mt-6 text-center w-full">
-        &copy; 2025 Calzado Deportivo. Todos los derechos reservados.
-      </p>
-    </footer>
+    <!-- Barra de logos fuera del section para que ocupe TODA la pantalla -->
+    <div
+      class="w-full overflow-hidden bg-gradient-to-r from-purple-200 via-white to-indigo-100 py-6"
+    >
+      <div class="relative w-[200%] flex animate-marquee hover:pause-animation">
+        <!-- Track 1 -->
+        <div class="flex items-center justify-around gap-16 w-full">
+          <img
+            src="public/images/andrea.png"
+            alt="Andrea"
+            class="h-20 w-32 object-contain"
+          />
+          <img
+            src="public/images/priceshoes.png"
+            alt="Price Shoes"
+            class="h-20 w-32 object-contain"
+          />
+          <img
+            src="public/images/cklass.png"
+            alt="Cklass"
+            class="h-20 w-32 object-contain"
+          />
+          <img
+            src="public/images/priceshoes.png"
+            alt="Price Shoes"
+            class="h-20 w-32 object-contain"
+          />
+        </div>
+        <!-- Track 2 -->
+        <div class="flex items-center justify-around gap-16 w-full">
+          <img
+            src="public/images/andrea.png"
+            alt="Andrea"
+            class="h-20 w-32 object-contain"
+          />
+          <img
+            src="public/images/priceshoes.png"
+            alt="Price Shoes"
+            class="h-20 w-32 object-contain"
+          />
+          <img
+            src="public/images/cklass.png"
+            alt="Cklass"
+            class="h-20 w-32 object-contain"
+          />
+          <img
+            src="public/images/priceshoes.png"
+            alt="Price Shoes"
+            class="h-20 w-32 object-contain"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Estilos de animación -->
+    <style>
+      @keyframes marquee {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .animate-marquee {
+        animation: marquee 20s linear infinite;
+      }
+
+      .hover\:pause-animation:hover {
+        animation-play-state: paused;
+      }
+    </style>
+
+    <!-- Galería de Productos -->
+    <section
+      id="galeria"
+      class="py-20 px-6 bg-gradient-to-br from-white to-gray-100"
+    >
+      <div class="max-w-7xl mx-auto text-center">
+        <h3 class="text-lg text-gray-500 uppercase tracking-wide">
+          Algunos de Nuestros Productos
+        </h3>
+        <h2
+          class="text-4xl font-extrabold text-gray-800 mt-2 mb-12 border-b-4 border-purple-500 inline-block pb-2"
+        >
+          Galería
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+          <!-- Tarjeta 1 -->
+          <div
+            class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300"
+          >
+            <div
+              class="relative aspect-square bg-white flex items-center justify-center overflow-hidden"
+            >
+              <img
+                src="/public/images/casuales.png"
+                alt="Zapatos Casuales Uno"
+                class="auto-swap-img show"
+              />
+              <img
+                src="/public/images/casuales2.png"
+                alt="Zapatos Casuales Dos"
+                class="auto-swap-img"
+              />
+              <img
+                src="/public/images/casuales3.png"
+                alt="Zapatos Casuales Tres"
+                class="auto-swap-img"
+              />
+              <img
+                src="/public/images/casuales4.png"
+                alt="Zapatos Casuales Cuatro"
+                class="auto-swap-img"
+              />
+            </div>
+            <div
+              class="bg-purple-100 text-purple-800 py-4 text-lg font-extrabold text-center tracking-wide"
+            >
+              Zapatos Casuales
+            </div>
+          </div>
+
+          <!-- Tarjeta 2 -->
+          <div
+            class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300"
+          >
+            <div
+              class="relative aspect-square bg-white flex items-center justify-center overflow-hidden"
+            >
+              <img
+                src="/public/images/mochila.png"
+                alt="Bolsos Uno"
+                class="auto-swap-img show"
+              />
+              <img
+                src="/public/images/mochila2.png"
+                alt="Bolsos Dos"
+                class="auto-swap-img"
+              />
+              <img
+                src="/public/images/mochila3.png"
+                alt="Bolsos Tres"
+                class="auto-swap-img"
+              />
+              <img
+                src="/public/images/mochila4.png"
+                alt="Bolsos Cuatro"
+                class="auto-swap-img"
+              />
+            </div>
+            <div
+              class="bg-blue-100 text-blue-800 py-4 text-lg font-extrabold text-center tracking-wide"
+            >
+              Bolsos y Accesorios
+            </div>
+          </div>
+
+          <!-- Tarjeta 3 -->
+          <div
+            class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300"
+          >
+            <div
+              class="relative aspect-square bg-white flex items-center justify-center overflow-hidden"
+            >
+              <img
+                src="/public/images/tacones.png"
+                alt="Tacones Uno"
+                class="auto-swap-img show"
+              />
+              <img
+                src="/public/images/tacones2.png"
+                alt="Tacones Dos"
+                class="auto-swap-img"
+              />
+              <img
+                src="/public/images/tacones3.png"
+                alt="Tacones Tres"
+                class="auto-swap-img"
+              />
+              <img
+                src="/public/images/tacones4.png"
+                alt="Tacones Cuatro"
+                class="auto-swap-img"
+              />
+            </div>
+            <div
+              class="bg-purple-100 text-purple-800 py-4 text-lg font-extrabold text-center tracking-wide"
+            >
+              Tacones Elegantes
+            </div>
+          </div>
+
+          <!-- Tarjeta 4 -->
+          <div
+            class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300"
+          >
+            <div
+              class="relative aspect-square bg-white flex items-center justify-center overflow-hidden"
+            >
+              <img
+                src="/public/images/escolar.png"
+                alt="Calzado Escolar Uno"
+                class="auto-swap-img show"
+              />
+              <img
+                src="/public/images/escolar2.png"
+                alt="Calzado Escolar Dos"
+                class="auto-swap-img"
+              />
+              <img
+                src="/public/images/escolar3.png"
+                alt="Calzado Escolar Tres"
+                class="auto-swap-img"
+              />
+              <img
+                src="/public/images/escolar4.png"
+                alt="Calzado Escolar Cuatro"
+                class="auto-swap-img"
+              />
+            </div>
+            <div
+              class="bg-blue-100 text-blue-800 py-4 text-lg font-extrabold text-center tracking-wide"
+            >
+              Calzado Escolar
+            </div>
+          </div>
+
+          <!-- Tarjeta 5 -->
+          <div
+            class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300"
+          >
+            <div
+              class="relative aspect-square bg-white flex items-center justify-center overflow-hidden"
+            >
+              <img
+                src="/public/images/deportivo.png"
+                alt="Deportivos Uno"
+                class="auto-swap-img show"
+              />
+              <img
+                src="/public/images/deportivo2.png"
+                alt="Deportivos Dos"
+                class="auto-swap-img"
+              />
+              <img
+                src="/public/images/deportivo3.png"
+                alt="Deportivos Tres"
+                class="auto-swap-img"
+              />
+              <img
+                src="/public/images/deportivo4.png"
+                alt="Deportivos Cuatro"
+                class="auto-swap-img"
+              />
+            </div>
+            <div
+              class="bg-purple-100 text-purple-800 py-4 text-lg font-extrabold text-center tracking-wide"
+            >
+              Deportivos y Tenis
+            </div>
+          </div>
+
+          <!-- Tarjeta 6 -->
+          <div
+            class="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300"
+          >
+            <div
+              class="relative aspect-square bg-white flex items-center justify-center overflow-hidden"
+            >
+              <img
+                src="/public/images/ropa.png"
+                alt="Ropa para Todos Uno"
+                class="auto-swap-img show"
+              />
+              <img
+                src="/public/images/ropa2.png"
+                alt="Ropa para Todos Dos"
+                class="auto-swap-img"
+              />
+              <img
+                src="/public/images/ropa3.png"
+                alt="Ropa para Todos Tres"
+                class="auto-swap-img"
+              />
+              <img
+                src="/public/images/ropa4.png"
+                alt="Ropa para Todos Cuatro"
+                class="auto-swap-img"
+              />
+            </div>
+            <div
+              class="bg-blue-100 text-blue-800 py-4 text-lg font-extrabold text-center tracking-wide"
+            >
+              Ropa para Todos
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Estilos para las imágenes animadas -->
+    <style>
+      .auto-swap-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      .auto-swap-img.show {
+        opacity: 1;
+      }
+    </style>
+
+    <!-- Script para hacer el cambio automático -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const cardContainers = document.querySelectorAll(".aspect-square");
+
+        cardContainers.forEach((container) => {
+          const images = container.querySelectorAll(".auto-swap-img");
+          let current = 0;
+
+          if (images.length < 2) return;
+
+          setInterval(() => {
+            images[current].classList.remove("show");
+            current = (current + 1) % images.length;
+            images[current].classList.add("show");
+          }, 3000); // Cambia cada 3 segundos
+        });
+      });
+    </script>
+
+    <!-- Quiénes Somos -->
+    <section
+      id="quienes-somos"
+      class="py-24 bg-gradient-to-br from-blue-100 via-white to-blue-100"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"
+      >
+        <!-- Columna de texto -->
+        <div data-aos="fade-right" class="space-y-6">
+          <h2 class="text-4xl font-extrabold text-gray-800">¿Quiénes somos?</h2>
+          <div class="w-20 h-1 bg-indigo-500 rounded"></div>
+          <p class="text-lg text-gray-700 leading-relaxed">
+            Somos una <span class="font-semibold text-indigo-600"
+              >distribuidora comprometida</span
+            > con acercar moda, calzado y estilo a cada rincón de Tizayuca y sus
+            alrededores.
+            <br /><br />
+            Nuestra pasión es conectar a las personas con productos de calidad a
+            precios accesibles. Nos guiamos por la <span
+              class="text-indigo-600 font-medium"
+              >responsabilidad, el respeto y la honestidad</span
+            >.
+            <br /><br />
+            Trabajamos cada día para brindar una atención cercana, confiable y profesional
+            a nuestros clientes y socios.
+          </p>
+        </div>
+
+        <!-- Columna visual -->
+        <div class="space-y-6" data-aos="fade-left">
+          <!-- Video principal (más grande y proporcional) -->
+          <div
+            class="aspect-video rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-500 transform hover:scale-105"
+          >
+            <video
+              class="w-full h-full object-cover object-top"
+              autoplay
+              muted
+              loop
+              playsinline
+            >
+              <source src="/public/videos/pstizayuca.mp4" type="video/mp4" />
+              Tu navegador no soporta video HTML5.
+            </video>
+          </div>
+
+          <!-- Texto alternativo para video -->
+          <div class="text-2xl text-gray-500 text-center italic font-semibold">
+            "Estilo, calidad y tendencia te esperan."
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <!-- Ubicación -->
+<section id="ubicacion" class="py-16 px-6 text-center bg-white">
+  <h2
+    class="text-3xl font-extrabold mb-4 border-b-4 border-purple-500 inline-block pb-2"
+  >
+    Ubicación
+  </h2>
+  <p class="mb-4 text-lg text-gray-700">
+    Visítanos en nuestra tienda física en<br />
+    <strong>Av. Juárez Nte. 7, Centro, Tizayuca, Hgo.</strong>
+  </p>
+
+  <!-- Botón alineado a la derecha -->
+  <div class="flex justify-end mb-4">
+    <a
+      href="https://goo.gl/maps/WWNdbMpXjXvK1mW29"
+      target="_blank"
+      class="inline-flex items-center gap-2 bg-[#0033A0] text-white px-6 py-3 rounded-lg shadow-md hover:bg-purple-900 transition duration-300"
+    >
+      <img
+        src="/images/google-maps_black.png"
+        alt="Ver en Google Maps"
+        class="w-6 h-6"
+      />
+      <span>Ver en Google Maps</span>
+    </a>
+  </div>
+
+  <!-- Mapa -->
+  <div class="w-full rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.9601240651327!2d-98.97817750000002!3d19.8416401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d191983c8aed15%3A0xaa3d196669d6057e!2sPrice%20Shoes%20Tizayuca!5e0!3m2!1ses!2smx!4v1747944810025!5m2!1ses!2smx"
+      class="w-full h-[450px] border-0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Ubicación en Google Maps"
+    ></iframe>
+  </div>
+</section>
+
+
+
+      <!-- Botón flotante de WhatsApp -->
+      <a
+        href="https://t.me/PriceShoesTizayucaBot"
+        class="fixed bottom-6 right-6 z-50"
+        target="_blank"
+        aria-label="ChatBot en Telegram"
+      >
+        <img
+          src="/images/telegram.png"
+          alt="WhatsApp"
+          class="w-14 h-14 hover:scale-110 transition-transform duration-300"
+        />
+      </a>
+
+      <!--footer-->
+      <footer id="contacto" class="bg-black text-white py-6 px-4 sm:px-6">
+        <div
+          class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-6 text-center md:text-left"
+        >
+          <!-- Información de Price Shoes -->
+          <div class="w-full md:w-auto">
+            <h3 class="text-xl font-semibold text-purple-400">
+              Price Shoes Tizayuca
+            </h3>
+            <p class="mt-2 text-sm">
+              Tu distribuidor oficial de<br />
+              calzado y accesorios con las<br />
+              mejores marcas y precios en<br />
+              Tizayuca, Hidalgo.
+            </p>
+
+            <!-- Redes Sociales -->
+            <h3 class="text-xl font-semibold mt-4 text-purple-400">
+              Redes Sociales
+            </h3>
+            <div
+              class="flex flex-wrap justify-center md:justify-start gap-2 w-fit mt-2 mx-auto md:mx-0"
+            >
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                aria-label="Facebook"
+              >
+                <img
+                  src="/images/facebook.png"
+                  alt="Facebook"
+                  class="w-10 h-10 hover:opacity-70 transition duration-300"
+                />
+              </a>
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                aria-label="Instagram"
+              >
+                <img
+                  src="/images/instagram.png"
+                  alt="Instagram"
+                  class="w-10 h-10 hover:opacity-70 transition duration-300"
+                />
+              </a>
+              <a
+                href="https://www.tiktok.com"
+                target="_blank"
+                aria-label="TikTok"
+              >
+                <img
+                  src="/images/tik-tok3.png"
+                  alt="TikTok"
+                  class="w-10 h-10 hover:opacity-70 transition duration-300"
+                />
+              </a>
+              <a
+                href="https://wa.me/527791353215"
+                target="_blank"
+                aria-label="WhatsApp"
+              >
+                <img
+                  src="/images/whatsapp.png"
+                  alt="WhatsApp"
+                  class="w-10 h-10 hover:opacity-70 transition duration-300"
+                />
+              </a>
+            </div>
+          </div>
+
+          <!-- Información de Contacto -->
+          <div class="w-full md:w-auto flex flex-col items-center text-center">
+            <h3 class="text-xl font-semibold text-purple-400">Contacto</h3>
+            <p class="mt-2 flex items-center justify-center gap-2 text-sm">
+              <img src="/images/mail.png" alt="Correo" class="w-6 h-6" />
+              acirema12@hotmail.com
+            </p>
+            <img
+              src="/images/LOGO.png"
+              alt="Logo de la empresa"
+              class="mt-2 w-48 h-auto"
+            />
+          </div>
+
+          <!-- Horario de atención -->
+          <div class="w-full md:w-auto text-center md:text-right">
+            <h3 class="text-xl font-semibold mb-2 text-purple-400">
+              Horario de atención
+            </h3>
+            <div class="text-sm text-center md:text-left">
+              <div
+                class="flex justify-center md:justify-start items-center gap-2 mb-2"
+              >
+                <img
+                  src="/images/time_morado.png"
+                  alt="Reloj"
+                  class="w-5 h-5"
+                />
+                <span class="font-medium">Lunes a Sábado:</span>
+              </div>
+              <p class="ml-0 md:ml-7">10:00 am - 8:00 pm</p>
+
+              <div
+                class="flex justify-center md:justify-start items-center gap-2 mt-4 mb-2"
+              >
+                <img
+                  src="/images/time_morado.png"
+                  alt="Reloj"
+                  class="w-5 h-5"
+                />
+                <span class="font-medium">Domingo:</span>
+              </div>
+              <p class="ml-0 md:ml-7">10:00 am - 8:00 pm</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Atribución a Flaticon -->
+  <div class="mt-6 flex items-center justify-center gap-2 text-xs text-gray-400">
+    <span>Algunos íconos fueron diseñados e implementados en esta página por</span>
+    <a
+      href="https://www.flaticon.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center gap-1 underline hover:text-purple-300"
+    >
+      <img
+        src="images/flaticon.png"
+        alt="Logo Flaticon"
+        class="w-5 h-5"
+      />
+      Flaticon
+    </a>
+  </div>
+
+        <!-- Texto de derechos reservados (centrado) -->
+        <p class="text-sm mt-6 text-center w-full">
+          &copy; Distribuidor autorizado de Price Shoes. Todos los derechos
+          reservados.
+        </p>
+      </footer>
+    
   </body>
 </html>
