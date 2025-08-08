@@ -24,7 +24,6 @@ import "../styles/global.css";
 
   <body class="bg-white text-gray-800 font-sans">
     <!-- Header/Menu -->
-    <!-- Header .astro (ejemplo completo) -->
 
     <header
       class="fixed top-0 left-0 w-full bg-black text-white px-6 py-4 border-b border-white z-50"
@@ -99,11 +98,21 @@ import "../styles/global.css";
         const menuBtn = document.getElementById("menu-btn");
         const menu = document.getElementById("menu");
 
-        if (menuBtn && menu) {
-          menuBtn.addEventListener("click", () => {
-            menu.classList.toggle("hidden");
+        if (!menuBtn || !menu) return; // Salir si no existen los elementos
+
+        const menuLinks = menu.querySelectorAll("a");
+
+        menuBtn.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+        });
+
+        menuLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            if (window.innerWidth < 768) {
+              menu.classList.add("hidden");
+            }
           });
-        }
+        });
       });
     </script>
 
