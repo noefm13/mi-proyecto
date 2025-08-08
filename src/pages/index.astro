@@ -109,51 +109,51 @@ import "../styles/global.css";
 
     <!-- Carrusel de imágenes -->
     <!-- Sección de inicio -->
-    <section id="inicio" class="relative h-screen bg-black">
-      <div class="relative h-full overflow-hidden" id="hero-carousel">
+    <section id="inicio" class="relative bg-black">
+      <div class="relative overflow-hidden" id="hero-carousel">
         <!-- Sombra negra -->
         <div class="absolute inset-0 bg-black/70 z-0"></div>
 
         <!-- Imágenes -->
         <div
           id="hero-slider"
-          class="flex transition-all duration-700 h-full relative z-10"
+          class="flex transition-all duration-700 relative z-10"
           style="width: 500vw;"
         >
           <img
-            src="/mi-proyecto//images/bienvenida.jpg"
-            class="w-screen h-full object-cover flex-shrink-0 filter brightness-85"
+            src="/mi-proyecto/images/bienvenida.jpg"
+            class="w-screen h-[60vh] md:h-screen object-cover flex-shrink-0 filter brightness-85"
             alt="Slide 1"
           />
           <img
-            src="/mi-proyecto//images/summer_2025.jpg"
-            class="w-screen h-full object-cover flex-shrink-0 filter brightness-85"
+            src="/mi-proyecto/images/summer_2025.jpg"
+            class="w-screen h-[60vh] md:h-screen object-cover flex-shrink-0 filter brightness-85"
             alt="Slide 2"
           />
           <img
-            src="/mi-proyecto//images/imagen-carrusel-4.jpg"
-            class="w-screen h-full object-cover flex-shrink-0 filter brightness-85"
+            src="/mi-proyecto/images/imagen-carrusel-4.jpg"
+            class="w-screen h-[60vh] md:h-screen object-cover flex-shrink-0 filter brightness-85"
             alt="Slide 3"
           />
           <img
-            src="/mi-proyecto//images/imagen-carrusel-5.jpg"
-            class="w-screen h-full object-cover flex-shrink-0 filter brightness-85"
+            src="/mi-proyecto/images/imagen-carrusel-5.jpg"
+            class="w-screen h-[60vh] md:h-screen object-cover flex-shrink-0 filter brightness-85"
             alt="Slide 4"
           />
           <img
             src="/mi-proyecto/images/imagen-carrusel-7.jpg"
-            class="w-screen h-full object-cover flex-shrink-0 filter brightness-85"
+            class="w-screen h-[60vh] md:h-screen object-cover flex-shrink-0 filter brightness-85"
             alt="Slide 5"
           />
         </div>
 
         <!-- Botón de acción -->
         <div
-          class="absolute inset-0 flex justify-center items-start text-center z-20 pt-96"
+          class="absolute inset-0 flex justify-center items-start text-center z-20 pt-[40vh] md:pt-96"
         >
           <a
             href="#quienes-somos"
-            class="bg-white text-black px-6 py-3 rounded shadow-md font-bold transition hover:bg-[#0033A0] hover:text-white"
+            class="bg-white text-black px-6 py-3 rounded shadow-md font-bold transition hover:bg-[#7B3494] hover:text-white"
           >
             ¡CONÓCENOS!
           </a>
@@ -712,7 +712,10 @@ import "../styles/global.css";
               loop
               playsinline
             >
-              <source src="/mi-proyecto/videos/pstizayuca.mp4" type="video/mp4" />
+              <source
+                src="/mi-proyecto/videos/pstizayuca.mp4"
+                type="video/mp4"
+              />
               Tu navegador no soporta video HTML5.
             </video>
           </div>
@@ -856,7 +859,11 @@ import "../styles/global.css";
         <div class="w-full md:w-auto flex flex-col items-center text-center">
           <h3 class="text-xl font-semibold text-purple-400">Contacto</h3>
           <p class="mt-2 flex items-center justify-center gap-2 text-sm">
-            <img src="/mi-proyecto/images/mail.png" alt="Correo" class="w-6 h-6" />
+            <img
+              src="/mi-proyecto/images/mail.png"
+              alt="Correo"
+              class="w-6 h-6"
+            />
             <a
               href="mailto:acirema12@hotmail.com"
               class="underline hover:text-purple-300"
@@ -880,7 +887,11 @@ import "../styles/global.css";
             <div
               class="flex justify-center md:justify-start items-center gap-2 mb-2"
             >
-              <img src="/mi-proyecto/images/time_morado.png" alt="Reloj" class="w-5 h-5" />
+              <img
+                src="/mi-proyecto/images/time_morado.png"
+                alt="Reloj"
+                class="w-5 h-5"
+              />
               <span class="font-medium">Lunes a Sábado:</span>
             </div>
             <p class="ml-0 md:ml-7">10:00 am - 8:00 pm</p>
@@ -888,7 +899,11 @@ import "../styles/global.css";
             <div
               class="flex justify-center md:justify-start items-center gap-2 mt-4 mb-2"
             >
-              <img src="/mi-proyecto/images/time_morado.png" alt="Reloj" class="w-5 h-5" />
+              <img
+                src="/mi-proyecto/images/time_morado.png"
+                alt="Reloj"
+                class="w-5 h-5"
+              />
               <span class="font-medium">Domingo:</span>
             </div>
             <p class="ml-0 md:ml-7">10:00 am - 5:00 pm</p>
